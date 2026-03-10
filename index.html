@@ -29,13 +29,23 @@ border-radius:15px;
 box-shadow:0 5px 10px rgba(0,0,0,0.1);
 }
 
-/* IMAGE FIX */
+/* Card lift effect */
+.card:hover{
+transform:translateY(-8px);
+}
+
 .card img{
 width:100%;
 height:200px;
 object-fit:cover;
 border-radius:10px;
 margin-top:10px;
+transition:transform 0.4s;
+}
+
+/* Image zoom effect */
+.card:hover img{
+transform:scale(1.1);
 }
 
 button{
