@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Birthday Benita(Darling)</title>
+
+<style>
+
+body{
+font-family:Arial;
+text-align:center;
+background:linear-gradient(to right,#ffd6e0,#fff5f8);
+}
+
+h1{
+color:#ff1493;
+}
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:15px;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+
+button{
+padding:10px 20px;
+font-size:16px;
+background:#ff69b4;
+border:none;
+color:white;
+border-radius:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🎂 Happy 26th Birthday Darling 🎂</h1>
+
+<p>Dear Akkuuuuuuuu, thank you for always being part of my life 💖</p>
+
+<button onclick="showMessage()">Click for Surprise 💌</button>
+
+<p id="secret"></p>
+
+<div class="container">
+
+<div class="card">
+<h3>Memory 1</h3>
+<p>The day you were born our family became brighter.</p>
+</div>
+
+<div class="card">
+<h3>Memory 2</h3>
+<p>Our childhood memories together are unforgettable.</p>
+</div>
+
+<div class="card">
+<h3>Memory 3</h3>
+<p>You always supported me whenever I needed you.</p>
+</div>
+
+</div>
+
+<script>
+
+function showMessage(){
+document.getElementById("secret").innerHTML =
+"💖 You are the best sister anyone could ask for. Happy Birthday!";
+}
+
+</script>
+
+</body>
+</html>
