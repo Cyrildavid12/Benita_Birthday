@@ -8,6 +8,7 @@
 body{
 font-family:'Segoe UI',sans-serif;
 text-align:center;
+background-image:url("photo24.jpg");
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
@@ -15,7 +16,6 @@ margin:0;
 padding:0;
 color:white;
 overflow-x:hidden;
-transition:background-image 2s ease;
 }
 
 /* INTRO */
@@ -74,16 +74,11 @@ z-index:2000;
 .gift{
 font-size:90px;
 cursor:pointer;
-transition:0.5s;
-}
-
-.gift:hover{
-transform:scale(1.3) rotate(10deg);
 }
 
 .hidden{display:none;}
 
-/* MEMORY CARDS */
+/* MEMORY */
 
 .container{
 display:grid;
@@ -97,12 +92,6 @@ background:rgba(255,255,255,0.15);
 backdrop-filter:blur(10px);
 border-radius:15px;
 padding:10px;
-transition:0.4s;
-}
-
-.card:hover{
-transform:scale(1.08);
-box-shadow:0 0 20px pink;
 }
 
 .card img{
@@ -124,8 +113,23 @@ width:100%;
 height:280px;
 object-fit:contain;
 border-radius:20px;
-box-shadow:0 10px 20px rgba(0,0,0,0.6);
 background:black;
+}
+
+/* SURPRISE BUTTON */
+
+#surpriseBtn{
+position:fixed;
+bottom:120px;
+right:120px;
+padding:16px 26px;
+font-size:18px;
+background:#ff4fa0;
+border:none;
+color:white;
+border-radius:10px;
+cursor:pointer;
+box-shadow:0 0 15px pink;
 }
 
 /* YEAR GRID */
@@ -144,19 +148,25 @@ z-index:999;
 
 .year-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:30px;
 padding:40px;
 }
 
 .year-box{
 background:linear-gradient(135deg,#ff7ac8,#ff4fa0);
-padding:18px;
-border-radius:12px;
+padding:35px;
+border-radius:15px;
 cursor:pointer;
-font-weight:bold;
-font-size:18px;
-transition:0.4s;
+font-size:24px;
+opacity:0;
+transform:translateY(40px);
+transition:all 0.6s ease;
+}
+
+.year-box.show{
+opacity:1;
+transform:translateY(0);
 }
 
 .year-box:hover{
@@ -195,6 +205,30 @@ object-fit:contain;
 border-radius:12px;
 }
 
+/* FINAL LETTER */
+
+#letterPopup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+justify-content:center;
+align-items:center;
+z-index:1200;
+}
+
+.letterBox{
+background:white;
+color:black;
+padding:40px;
+border-radius:20px;
+max-width:500px;
+font-size:20px;
+}
+
 /* HEARTS */
 
 @keyframes floatHeart{
@@ -207,49 +241,6 @@ position:fixed;
 bottom:-20px;
 font-size:22px;
 animation:floatHeart 6s linear infinite;
-}
-
-/* CONFETTI */
-
-.confetti{
-position:fixed;
-width:8px;
-height:8px;
-background:red;
-top:-10px;
-animation:fall 3s linear forwards;
-}
-
-@keyframes fall{
-to{transform:translateY(100vh);}
-}
-
-/* PARTICLES */
-
-#particles{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-z-index:-1;
-}
-
-/* FIREWORKS */
-
-.firework{
-position:fixed;
-width:6px;
-height:6px;
-border-radius:50%;
-background:yellow;
-animation:explode 1.2s linear forwards;
-}
-
-@keyframes explode{
-0%{transform:scale(1);}
-100%{transform:scale(6);opacity:0;}
 }
 
 button{
@@ -266,8 +257,6 @@ cursor:pointer;
 </head>
 
 <body>
-
-<canvas id="particles"></canvas>
 
 <audio id="music">
 <source src="song1.mp3" type="audio/mpeg">
@@ -286,8 +275,6 @@ cursor:pointer;
 
 <h1>🎂 Happy 26th Birthday Darling 🎂</h1>
 
-<button onclick="openYears();confettiExplosion()">💌 Open Surprise</button>
-
 <div class="container">
 <div class="card"><img src="photo1.jpg"></div>
 <div class="card"><img src="photo2.jpg"></div>
@@ -302,35 +289,18 @@ cursor:pointer;
 
 </div>
 
+<button id="surpriseBtn" onclick="openYears()">💌 Open Surprise</button>
+
 <div id="yearPopup" class="popup">
+
 <div class="year-grid">
 
-<div class="year-box" onclick="openYear('2001','photo4.jpg')">2001</div>
-<div class="year-box" onclick="openYear('2002','photo5.jpg')">2002</div>
-<div class="year-box" onclick="openYear('2003','photo6.jpg')">2003</div>
-<div class="year-box" onclick="openYear('2004','photo7.jpg')">2004</div>
-<div class="year-box" onclick="openYear('2005','photo8.jpg')">2005</div>
-<div class="year-box" onclick="openYear('2006','photo9.jpg')">2006</div>
-<div class="year-box" onclick="openYear('2007','photo10.jpg')">2007</div>
-<div class="year-box" onclick="openYear('2008','photo11.jpg')">2008</div>
-<div class="year-box" onclick="openYear('2009','photo12.jpg')">2009</div>
-<div class="year-box" onclick="openYear('2010','photo13.jpg')">2010</div>
-<div class="year-box" onclick="openYear('2011','photo14.jpg')">2011</div>
-<div class="year-box" onclick="openYear('2012','photo15.jpg')">2012</div>
-<div class="year-box" onclick="openYear('2013','photo16.jpg')">2013</div>
-<div class="year-box" onclick="openYear('2014','photo17.jpg')">2014</div>
-<div class="year-box" onclick="openYear('2015','photo18.jpg')">2015</div>
-<div class="year-box" onclick="openYear('2016','photo19.jpg')">2016</div>
-<div class="year-box" onclick="openYear('2017','photo20.jpg')">2017</div>
-<div class="year-box" onclick="openYear('2018','photo21.jpg')">2018</div>
-<div class="year-box" onclick="openYear('2019','photo22.jpg')">2019</div>
-<div class="year-box" onclick="openYear('2020','photo23.jpg')">2020</div>
-<div class="year-box" onclick="openYear('2021','photo25.jpg')">2021</div>
-<div class="year-box" onclick="openYear('2022','photo26.jpg')">2022</div>
-<div class="year-box" onclick="openYear('2023','photo27.jpg')">2023</div>
-<div class="year-box" onclick="openYear('2024','photo28.jpg')">2024</div>
-<div class="year-box" onclick="openYear('2025','photo29.jpg')">2025</div>
-<div class="year-box" onclick="openYear('2026','photo30.jpg');fireworks()">🎂 2026</div>
+<div class="year-box">2001</div>
+<div class="year-box">2005</div>
+<div class="year-box">2010</div>
+<div class="year-box">2015</div>
+<div class="year-box">2020</div>
+<div class="year-box" onclick="showLetter()">🎂 2026</div>
 
 </div>
 
@@ -338,23 +308,31 @@ cursor:pointer;
 
 </div>
 
-<div id="yearModal" class="yearModal">
-<div class="modal-content">
-<h2 id="yearTitle"></h2>
-<img id="yearPhoto">
-<p>Beautiful memory from this year 💖</p>
-<button onclick="closeYear()">Close</button>
+<div id="letterPopup">
+
+<div class="letterBox">
+
+💌  
+Thank you for being the best sister in my life.  
+Your kindness, laughter and support mean everything to me.  
+
+Happy Birthday Benita ❤️  
+
+— From Your Thambi (THE KING)
+
+<br><br>
+
+<button onclick="closeLetter()">Close</button>
+
 </div>
+
 </div>
 
 <script>
 
-/* SHOW GIFT AFTER INTRO */
 setTimeout(()=>{
 document.getElementById("intro").style.display="flex";
 },6000);
-
-/* PLAY MUSIC */
 
 function openGift(){
 document.getElementById("intro").style.display="none";
@@ -362,17 +340,21 @@ document.getElementById("mainContent").classList.remove("hidden");
 document.getElementById("music").play();
 }
 
-/* CONFETTI */
-
-function confettiExplosion(){
-for(let i=0;i<120;i++){
-let confetti=document.createElement("div");
-confetti.className="confetti";
-confetti.style.left=Math.random()*100+"vw";
-confetti.style.background="hsl("+Math.random()*360+",100%,50%)";
-document.body.appendChild(confetti);
-setTimeout(()=>confetti.remove(),3000);
+function openYears(){
+document.getElementById("yearPopup").style.display="block";
+showTimeline();
 }
+
+function closeYears(){
+document.getElementById("yearPopup").style.display="none";
+}
+
+function showLetter(){
+document.getElementById("letterPopup").style.display="flex";
+}
+
+function closeLetter(){
+document.getElementById("letterPopup").style.display="none";
 }
 
 /* HEARTS */
@@ -385,31 +367,6 @@ heart.style.left=Math.random()*100+"vw";
 document.body.appendChild(heart);
 setTimeout(()=>heart.remove(),6000);
 },700);
-
-/* FIREWORKS */
-
-function fireworks(){
-for(let i=0;i<60;i++){
-let f=document.createElement("div");
-f.className="firework";
-f.style.left=Math.random()*100+"vw";
-f.style.top=Math.random()*60+"vh";
-f.style.background="hsl("+Math.random()*360+",100%,60%)";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),1200);
-}
-}
-
-/* BACKGROUND CHANGE */
-
-let backgrounds=["photo24.jpg","photo10.jpg"];
-let bgIndex=0;
-
-setInterval(()=>{
-bgIndex++;
-if(bgIndex>=backgrounds.length){bgIndex=0;}
-document.body.style.backgroundImage="url("+backgrounds[bgIndex]+")";
-},6000);
 
 /* SLIDER */
 
@@ -426,68 +383,16 @@ if(index>=images.length){index=0;}
 document.getElementById("slideImage").src=images[index];
 },3000);
 
-/* YEAR POPUP */
+/* TIMELINE ANIMATION */
 
-function openYears(){
-document.getElementById("yearPopup").style.display="block";
-}
-
-function closeYears(){
-document.getElementById("yearPopup").style.display="none";
-}
-
-function openYear(year,photo){
-document.getElementById("yearModal").style.display="flex";
-document.getElementById("yearTitle").innerText=year;
-document.getElementById("yearPhoto").src=photo;
-}
-
-function closeYear(){
-document.getElementById("yearModal").style.display="none";
-}
-
-/* PARTICLES */
-
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-let particles=[];
-
-for(let i=0;i<80;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2+1,
-dx:(Math.random()-0.5),
-dy:(Math.random()-0.5)
+function showTimeline(){
+const items=document.querySelectorAll(".year-box");
+items.forEach((el,i)=>{
+setTimeout(()=>{
+el.classList.add("show");
+},i*300);
 });
 }
-
-function animateParticles(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-particles.forEach(p=>{
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-ctx.fillStyle="white";
-ctx.fill();
-
-p.x+=p.dx;
-p.y+=p.dy;
-
-if(p.x<0||p.x>canvas.width)p.dx*=-1;
-if(p.y<0||p.y>canvas.height)p.dy*=-1;
-});
-
-requestAnimationFrame(animateParticles);
-
-}
-
-animateParticles();
 
 </script>
 
