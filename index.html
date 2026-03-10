@@ -254,10 +254,10 @@ animation:explode 1.2s linear forwards;
 
 <canvas id="particles"></canvas>
 
-<audio autoplay>
+<audio id="bgMusic">
 <source src="song1.mp3" type="audio/mpeg">
 </audio>
-
+  
 <div id="cinemaIntro">
 <h1 class="introTitle">Happy 26th Birthday Benita</h1>
 <h2 class="introSub">From Your Thambi (THE KING)</h2>
@@ -502,6 +502,14 @@ document.body.appendChild(f);
 setTimeout(()=>f.remove(),1200);
 }
 }
+
+/* MUSIC START AFTER FIRST CLICK */
+
+const music = document.getElementById("bgMusic");
+
+document.body.addEventListener("click", function(){
+music.play();
+}, {once:true});
 
 </script>
 
