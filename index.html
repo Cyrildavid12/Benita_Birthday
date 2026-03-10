@@ -8,13 +8,14 @@
 body{
 font-family:Arial;
 text-align:center;
-background:linear-gradient(to right,#ffd6e0,#fff5f8);
+background-image:url("photo5.jpg");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
 margin:0;
 padding:0;
-}
-
-h1{
-color:#ff1493;
+color:white;
+text-shadow:1px 1px 4px black;
 }
 
 .container{
@@ -25,12 +26,14 @@ padding:20px;
 }
 
 .card{
-background:white;
+background:rgba(255,255,255,0.9);
 padding:15px;
 border-radius:15px;
-box-shadow:0 5px 10px rgba(0,0,0,0.1);
+box-shadow:0 5px 10px rgba(0,0,0,0.2);
 transition:transform 0.3s;
 overflow:hidden;
+color:black;
+text-shadow:none;
 }
 
 .card:hover{
@@ -42,7 +45,6 @@ width:100%;
 height:200px;
 object-fit:cover;
 border-radius:10px;
-margin-top:10px;
 transition:transform 0.4s;
 }
 
@@ -85,7 +87,7 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.6);
+background:rgba(0,0,0,0.7);
 justify-content:center;
 align-items:center;
 z-index:999;
@@ -93,20 +95,74 @@ z-index:999;
 
 .popup-content{
 background:white;
-padding:30px;
+padding:20px;
 border-radius:15px;
-text-align:center;
-max-width:400px;
+max-width:600px;
+max-height:80vh;
+overflow-y:auto;
+color:black;
+}
+
+/* MEMORY GRID */
+
+.memory-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+gap:12px;
+margin-top:20px;
+}
+
+.memory-box{
+background:white;
+padding:8px;
+border-radius:10px;
+box-shadow:0 3px 8px rgba(0,0,0,0.1);
+opacity:0;
+transform:translateY(40px);
+transition:all 0.8s ease;
+}
+
+.memory-box.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.memory-box img{
+width:100%;
+height:100px;
+object-fit:cover;
+border-radius:6px;
+}
+
+/* BALLOONS */
+
+.balloon{
+width:40px;
+height:60px;
+background:#ff69b4;
+border-radius:50%;
+position:fixed;
+bottom:-100px;
+animation:floatBalloon 10s infinite;
+opacity:0.6;
+}
+
+.balloon:nth-child(1){left:10%;}
+.balloon:nth-child(2){left:40%;}
+.balloon:nth-child(3){left:70%;}
+.balloon:nth-child(4){left:90%;}
+
+@keyframes floatBalloon{
+0%{bottom:-100px}
+100%{bottom:100vh}
 }
 
 </style>
-
 </head>
 
 <body>
 
 <h1>🎂 Happy 26th Birthday Darling 🎂</h1>
-
 <p>Dear Akkuuuuuuuu, thank you for always being part of my life 💖</p>
 
 <button onclick="birthdaySurprise()">Click for Surprise 💌</button>
@@ -114,21 +170,21 @@ max-width:400px;
 <div class="container">
 
 <div class="card">
-<h3>Memory 1</h3>
-<img src="photo1.jpg">
-<p>One of my favorite (Ugly 😜) pictures.</p>
+<h3>Memory</h3>
+<img src="photo4.jpg">
+<p>One of my favorite memories with you.</p>
 </div>
 
 <div class="card">
-<h3>Memory 2</h3>
-<img src="photo2.jpg">
-<p>When we are together our memories are unforgettable.</p>
+<h3>Memory</h3>
+<img src="photo6.jpg">
+<p>Every moment with you is special.</p>
 </div>
 
 <div class="card">
-<h3>Memory 3</h3>
-<img src="photo3.jpg">
-<p>You always supported me whenever I needed you.</p>
+<h3>Memory</h3>
+<img src="photo7.jpg">
+<p>Life feels brighter when you are around.</p>
 </div>
 
 </div>
@@ -136,35 +192,72 @@ max-width:400px;
 <h2>Beautiful Memories Together 💖</h2>
 
 <div class="slider">
-<img id="slideImage" src="photo1.jpg">
+<img id="slideImage" src="photo4.jpg">
 </div>
 
 <div id="popup" class="popup">
+
 <div class="popup-content">
 
-<h2>💖 Happy Birthday Akku 💖</h2>
+<h2>💖 26 Beautiful Years 💖</h2>
 
-<p>
-You are one of the most special people in my life.  
-Thank you for always supporting me, laughing with me,  
-and being my best sister.
-</p>
+<div class="memory-grid">
+
+<!-- 26 MEMORY BLOCKS -->
+
+<div class="memory-box"><h4>Year 1</h4><img src="photo4.jpg"><p>Your journey began.</p></div>
+<div class="memory-box"><h4>Year 2</h4><img src="photo5.jpg"><p>A beautiful life story starts.</p></div>
+<div class="memory-box"><h4>Year 3</h4><img src="photo6.jpg"><p>Always bringing joy.</p></div>
+<div class="memory-box"><h4>Year 4</h4><img src="photo7.jpg"><p>Your smile lights up everything.</p></div>
+<div class="memory-box"><h4>Year 5</h4><img src="photo8.jpg"><p>More happiness every year.</p></div>
+<div class="memory-box"><h4>Year 6</h4><img src="photo9.jpg"><p>Your kindness is special.</p></div>
+<div class="memory-box"><h4>Year 7</h4><img src="photo10.jpg"><p>Life is better with you.</p></div>
+
+<div class="memory-box"><h4>Year 8</h4><img src="photo4.jpg"><p>Memories growing together.</p></div>
+<div class="memory-box"><h4>Year 9</h4><img src="photo5.jpg"><p>Your laughter is precious.</p></div>
+<div class="memory-box"><h4>Year 10</h4><img src="photo6.jpg"><p>Always inspiring everyone.</p></div>
+
+<div class="memory-box"><h4>Year 11</h4><img src="photo7.jpg"><p>Beautiful memories.</p></div>
+<div class="memory-box"><h4>Year 12</h4><img src="photo8.jpg"><p>Your kindness shines.</p></div>
+<div class="memory-box"><h4>Year 13</h4><img src="photo9.jpg"><p>Life becomes brighter.</p></div>
+
+<div class="memory-box"><h4>Year 14</h4><img src="photo10.jpg"><p>Your smile is magical.</p></div>
+<div class="memory-box"><h4>Year 15</h4><img src="photo4.jpg"><p>Growing stronger each year.</p></div>
+<div class="memory-box"><h4>Year 16</h4><img src="photo5.jpg"><p>More memories together.</p></div>
+
+<div class="memory-box"><h4>Year 17</h4><img src="photo6.jpg"><p>You inspire everyone.</p></div>
+<div class="memory-box"><h4>Year 18</h4><img src="photo7.jpg"><p>New dreams begin.</p></div>
+<div class="memory-box"><h4>Year 19</h4><img src="photo8.jpg"><p>Your journey continues.</p></div>
+
+<div class="memory-box"><h4>Year 20</h4><img src="photo9.jpg"><p>More joy and laughter.</p></div>
+<div class="memory-box"><h4>Year 21</h4><img src="photo10.jpg"><p>Life becomes exciting.</p></div>
+<div class="memory-box"><h4>Year 22</h4><img src="photo4.jpg"><p>Your kindness grows.</p></div>
+
+<div class="memory-box"><h4>Year 23</h4><img src="photo5.jpg"><p>Memories everywhere.</p></div>
+<div class="memory-box"><h4>Year 24</h4><img src="photo6.jpg"><p>Life is beautiful.</p></div>
+<div class="memory-box"><h4>Year 25</h4><img src="photo7.jpg"><p>Another wonderful year.</p></div>
+<div class="memory-box"><h4>Year 26</h4><img src="photo8.jpg"><p>Happy 26th Birthday ❤️</p></div>
+
+</div>
 
 <button onclick="closePopup()">Close</button>
 
 </div>
 </div>
 
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+
 <script>
 
-let images = ["photo1.jpg","photo2.jpg","photo3.jpg"];
+let images = ["photo4.jpg","photo5.jpg","photo6.jpg","photo7.jpg","photo8.jpg","photo9.jpg","photo10.jpg"];
 let index = 0;
 
 setInterval(function(){
 index++;
-if(index >= images.length){
-index = 0;
-}
+if(index >= images.length){index=0;}
 document.getElementById("slideImage").src = images[index];
 },3000);
 
@@ -172,7 +265,9 @@ function birthdaySurprise(){
 
 document.getElementById("popup").style.display="flex";
 
-for(let i=0;i<100;i++){
+/* CONFETTI */
+
+for(let i=0;i<80;i++){
 
 let confetti=document.createElement("div");
 
@@ -182,23 +277,52 @@ confetti.style.height="10px";
 confetti.style.background="hsl(" + Math.random()*360 + ",100%,50%)";
 confetti.style.top="-10px";
 confetti.style.left=Math.random()*window.innerWidth+"px";
-confetti.style.opacity=Math.random();
-confetti.style.transform="rotate("+Math.random()*360+"deg)";
 confetti.style.transition="top 3s linear";
 
 document.body.appendChild(confetti);
 
+setTimeout(()=>{confetti.style.top="100vh";},10);
+setTimeout(()=>{confetti.remove();},3000);
+
+}
+
+/* HEARTS */
+
+for(let i=0;i<20;i++){
+let heart=document.createElement("div");
+heart.innerHTML="💖";
+heart.style.position="fixed";
+heart.style.left=Math.random()*100+"vw";
+heart.style.top="100vh";
+heart.style.fontSize="20px";
+heart.style.transition="transform 4s linear";
+
+document.body.appendChild(heart);
+
 setTimeout(()=>{
-confetti.style.top="100vh";
+heart.style.transform="translateY(-100vh)";
 },10);
 
 setTimeout(()=>{
-confetti.remove();
-},3000);
-
+heart.remove();
+},4000);
 }
 
 }
+
+/* SCROLL ANIMATION */
+
+const observer = new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+});
+
+document.querySelectorAll(".memory-box").forEach(el=>{
+observer.observe(el);
+});
 
 function closePopup(){
 document.getElementById("popup").style.display="none";
