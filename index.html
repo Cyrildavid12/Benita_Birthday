@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <title>Happy Birthday Benita ❤️</title>
@@ -76,9 +77,30 @@ font-size:90px;
 cursor:pointer;
 }
 
-.hidden{display:none;}
+/* BUTTON */
 
-/* MEMORY */
+button{
+padding:14px 24px;
+font-size:18px;
+background:#ff4fa0;
+border:none;
+color:white;
+border-radius:8px;
+cursor:pointer;
+}
+
+.highlight{
+animation:pulse 1.2s infinite;
+box-shadow:0 0 20px pink;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.1)}
+100%{transform:scale(1)}
+}
+
+/* MEMORY CARDS */
 
 .container{
 display:grid;
@@ -92,6 +114,12 @@ background:rgba(255,255,255,0.15);
 backdrop-filter:blur(10px);
 border-radius:15px;
 padding:10px;
+transition:0.4s;
+}
+
+.card:hover{
+transform:scale(1.08);
+box-shadow:0 0 20px pink;
 }
 
 .card img{
@@ -113,23 +141,6 @@ width:100%;
 height:280px;
 object-fit:contain;
 border-radius:20px;
-background:black;
-}
-
-/* SURPRISE BUTTON */
-
-#surpriseBtn{
-position:fixed;
-bottom:120px;
-right:120px;
-padding:16px 26px;
-font-size:18px;
-background:#ff4fa0;
-border:none;
-color:white;
-border-radius:10px;
-cursor:pointer;
-box-shadow:0 0 15px pink;
 }
 
 /* YEAR GRID */
@@ -141,7 +152,8 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.95);
+background-image:url("photo24.jpg");
+background-size:cover;
 overflow:auto;
 z-index:999;
 }
@@ -150,28 +162,22 @@ z-index:999;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
 gap:30px;
-padding:40px;
+padding:50px;
 }
 
 .year-box{
 background:linear-gradient(135deg,#ff7ac8,#ff4fa0);
 padding:35px;
-border-radius:15px;
+border-radius:20px;
 cursor:pointer;
-font-size:24px;
-opacity:0;
-transform:translateY(40px);
-transition:all 0.6s ease;
-}
-
-.year-box.show{
-opacity:1;
-transform:translateY(0);
+font-size:26px;
+font-weight:bold;
+transition:0.4s;
 }
 
 .year-box:hover{
 transform:scale(1.2);
-box-shadow:0 0 20px pink;
+box-shadow:0 0 25px pink;
 }
 
 /* MODAL */
@@ -192,7 +198,7 @@ z-index:1000;
 .modal-content{
 background:white;
 color:black;
-padding:25px;
+padding:30px;
 border-radius:20px;
 max-width:500px;
 text-align:center;
@@ -203,30 +209,6 @@ width:100%;
 max-height:400px;
 object-fit:contain;
 border-radius:12px;
-}
-
-/* FINAL LETTER */
-
-#letterPopup{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-justify-content:center;
-align-items:center;
-z-index:1200;
-}
-
-.letterBox{
-background:white;
-color:black;
-padding:40px;
-border-radius:20px;
-max-width:500px;
-font-size:20px;
 }
 
 /* HEARTS */
@@ -243,17 +225,38 @@ font-size:22px;
 animation:floatHeart 6s linear infinite;
 }
 
-button{
-padding:12px 20px;
-font-size:16px;
-background:#ff4fa0;
-border:none;
-color:white;
-border-radius:6px;
-cursor:pointer;
+/* CONFETTI */
+
+.confetti{
+position:fixed;
+width:8px;
+height:8px;
+background:red;
+top:-10px;
+animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+to{transform:translateY(100vh);}
+}
+
+/* FIREWORKS */
+
+.firework{
+position:fixed;
+width:6px;
+height:6px;
+border-radius:50%;
+animation:explode 1.2s linear forwards;
+}
+
+@keyframes explode{
+0%{transform:scale(1);}
+100%{transform:scale(6);opacity:0;}
 }
 
 </style>
+
 </head>
 
 <body>
@@ -271,9 +274,11 @@ cursor:pointer;
 <div class="gift" onclick="openGift()">🎁</div>
 </div>
 
-<div id="mainContent" class="hidden">
+<div id="mainContent" style="display:none;">
 
 <h1>🎂 Happy 26th Birthday Darling 🎂</h1>
+
+<button id="surpriseBtn" onclick="confettiExplosion();openYears()">💌 Open Surprise</button>
 
 <div class="container">
 <div class="card"><img src="photo1.jpg"></div>
@@ -289,18 +294,39 @@ cursor:pointer;
 
 </div>
 
-<button id="surpriseBtn" onclick="openYears()">💌 Open Surprise</button>
-
 <div id="yearPopup" class="popup">
 
 <div class="year-grid">
 
-<div class="year-box">2001</div>
-<div class="year-box">2005</div>
-<div class="year-box">2010</div>
-<div class="year-box">2015</div>
-<div class="year-box">2020</div>
-<div class="year-box" onclick="showLetter()">🎂 2026</div>
+<div class="year-box" onclick="openYear('2001','photo4.jpg','The year a beautiful soul was born ❤️')">2001</div>
+<div class="year-box" onclick="openYear('2002','photo5.jpg','A little angel growing with love 👶')">2002</div>
+<div class="year-box" onclick="openYear('2003','photo6.jpg','Your smile started brightening lives 😊')">2003</div>
+<div class="year-box" onclick="openYear('2004','photo7.jpg','Every year you became more special 🌸')">2004</div>
+<div class="year-box" onclick="openYear('2005','photo8.jpg','A year full of innocence 🎈')">2005</div>
+<div class="year-box" onclick="openYear('2006','photo9.jpg','Your laughter became happiness 💖')">2006</div>
+<div class="year-box" onclick="openYear('2007','photo10.jpg','More memories started building ✨')">2007</div>
+<div class="year-box" onclick="openYear('2008','photo11.jpg','You kept shining brighter 🌟')">2008</div>
+<div class="year-box" onclick="openYear('2009','photo12.jpg','Kindness and love everywhere 🌼')">2009</div>
+<div class="year-box" onclick="openYear('2010','photo13.jpg','Another beautiful chapter 📖')">2010</div>
+
+<div class="year-box" onclick="openYear('2011','photo14.jpg','More dreams started growing 💫')">2011</div>
+<div class="year-box" onclick="openYear('2012','photo15.jpg','A year of sweet memories 🌷')">2012</div>
+<div class="year-box" onclick="openYear('2013','photo16.jpg','You grew stronger and brighter ✨')">2013</div>
+<div class="year-box" onclick="openYear('2014','photo17.jpg','Another amazing step in life 💕')">2014</div>
+<div class="year-box" onclick="openYear('2015','photo18.jpg','Your smile kept lighting our world 😊')">2015</div>
+
+<div class="year-box" onclick="openYear('2016','photo19.jpg','Memories that stay forever 💖')">2016</div>
+<div class="year-box" onclick="openYear('2017','photo20.jpg','You became an inspiration 🌟')">2017</div>
+<div class="year-box" onclick="openYear('2018','photo21.jpg','Another step towards dreams ✨')">2018</div>
+<div class="year-box" onclick="openYear('2019','photo22.jpg','A year of wonderful stories 📖')">2019</div>
+<div class="year-box" onclick="openYear('2020','photo23.jpg','Even tough times couldn’t stop your shine 💪')">2020</div>
+
+<div class="year-box" onclick="openYear('2021','photo25.jpg','You kept growing beautifully 🌸')">2021</div>
+<div class="year-box" onclick="openYear('2022','photo26.jpg','Life became even more colorful 🌈')">2022</div>
+<div class="year-box" onclick="openYear('2023','photo27.jpg','You spread happiness everywhere 💖')">2023</div>
+<div class="year-box" onclick="openYear('2024','photo28.jpg','Another unforgettable year ✨')">2024</div>
+<div class="year-box" onclick="openYear('2025','photo29.jpg','Preparing for another beautiful chapter 🌟')">2025</div>
+<div class="year-box" onclick="openYear('2026','photo30.jpg','Happy 26th Birthday 🎂');fireworks()">2026</div>
 
 </div>
 
@@ -308,21 +334,17 @@ cursor:pointer;
 
 </div>
 
-<div id="letterPopup">
+<div id="yearModal" class="yearModal">
 
-<div class="letterBox">
+<div class="modal-content">
 
-💌  
-Thank you for being the best sister in my life.  
-Your kindness, laughter and support mean everything to me.  
+<h2 id="yearTitle"></h2>
 
-Happy Birthday Benita ❤️  
+<img id="yearPhoto">
 
-— From Your Thambi (THE KING)
+<p id="yearText"></p>
 
-<br><br>
-
-<button onclick="closeLetter()">Close</button>
+<button onclick="closeYear()">Close</button>
 
 </div>
 
@@ -330,68 +352,144 @@ Happy Birthday Benita ❤️
 
 <script>
 
+/* SHOW GIFT */
+
 setTimeout(()=>{
 document.getElementById("intro").style.display="flex";
 },6000);
 
+/* MUSIC */
+
 function openGift(){
+
 document.getElementById("intro").style.display="none";
-document.getElementById("mainContent").classList.remove("hidden");
+
+document.getElementById("mainContent").style.display="block";
+
 document.getElementById("music").play();
+
+setTimeout(()=>{
+document.getElementById("surpriseBtn").classList.add("highlight");
+},10000);
+
 }
 
-function openYears(){
-document.getElementById("yearPopup").style.display="block";
-showTimeline();
+/* CONFETTI */
+
+function confettiExplosion(){
+
+for(let i=0;i<120;i++){
+
+let c=document.createElement("div");
+
+c.className="confetti";
+
+c.style.left=Math.random()*100+"vw";
+
+c.style.background="hsl("+Math.random()*360+",100%,50%)";
+
+document.body.appendChild(c);
+
+setTimeout(()=>c.remove(),3000);
+
 }
 
-function closeYears(){
-document.getElementById("yearPopup").style.display="none";
 }
 
-function showLetter(){
-document.getElementById("letterPopup").style.display="flex";
+/* FIREWORKS */
+
+function fireworks(){
+
+for(let i=0;i<60;i++){
+
+let f=document.createElement("div");
+
+f.className="firework";
+
+f.style.left=Math.random()*100+"vw";
+
+f.style.top=Math.random()*60+"vh";
+
+f.style.background="hsl("+Math.random()*360+",100%,60%)";
+
+document.body.appendChild(f);
+
+setTimeout(()=>f.remove(),1200);
+
 }
 
-function closeLetter(){
-document.getElementById("letterPopup").style.display="none";
 }
 
 /* HEARTS */
 
 setInterval(()=>{
+
 let heart=document.createElement("div");
+
 heart.className="heart";
+
 heart.innerHTML="💖";
+
 heart.style.left=Math.random()*100+"vw";
+
 document.body.appendChild(heart);
+
 setTimeout(()=>heart.remove(),6000);
+
 },700);
 
 /* SLIDER */
 
 let images=[];
+
 for(let i=4;i<=35;i++){
+
 images.push("photo"+i+".jpg");
+
 }
 
 let index=0;
 
 setInterval(()=>{
+
 index++;
+
 if(index>=images.length){index=0;}
+
 document.getElementById("slideImage").src=images[index];
+
 },3000);
 
-/* TIMELINE ANIMATION */
+/* YEAR MODAL */
 
-function showTimeline(){
-const items=document.querySelectorAll(".year-box");
-items.forEach((el,i)=>{
-setTimeout(()=>{
-el.classList.add("show");
-},i*300);
-});
+function openYear(year,photo,text){
+
+document.getElementById("yearModal").style.display="flex";
+
+document.getElementById("yearTitle").innerText=year;
+
+document.getElementById("yearPhoto").src=photo;
+
+document.getElementById("yearText").innerText=text;
+
+}
+
+function closeYear(){
+
+document.getElementById("yearModal").style.display="none";
+
+}
+
+function openYears(){
+
+document.getElementById("yearPopup").style.display="block";
+
+}
+
+function closeYears(){
+
+document.getElementById("yearPopup").style.display="none";
+
 }
 
 </script>
