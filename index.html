@@ -55,7 +55,7 @@ animation:titleFade 3s forwards 2.5s;
 100%{opacity:0;visibility:hidden;}
 }
 
-/* GRID LAYOUT */
+/* GRID */
 
 .mainGrid{
 display:grid;
@@ -106,18 +106,7 @@ color:white;
 cursor:pointer;
 }
 
-.highlight{
-animation:pulse 1.2s infinite;
-box-shadow:0 0 20px pink;
-}
-
-@keyframes pulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.1)}
-100%{transform:scale(1)}
-}
-
-/* YEARS */
+/* YEAR GRID */
 
 .popup{
 display:none;
@@ -174,6 +163,7 @@ padding:30px;
 border-radius:20px;
 max-width:500px;
 text-align:center;
+position:relative;
 }
 
 .modal-content img{
@@ -183,32 +173,32 @@ object-fit:contain;
 border-radius:12px;
 }
 
-/* HEARTS */
+/* HEART EFFECT */
 
-@keyframes floatHeart{
-0%{transform:translateY(0);opacity:1;}
-100%{transform:translateY(-100vh);opacity:0;}
+.blinkHeart{
+position:absolute;
+font-size:30px;
+animation:blink 1s infinite;
 }
 
-.heart{
-position:fixed;
-bottom:-20px;
-font-size:22px;
-animation:floatHeart 6s linear infinite;
+@keyframes blink{
+0%{opacity:0}
+50%{opacity:1}
+100%{opacity:0}
 }
 
-/* CONFETTI */
+/* SPARKLE */
 
-.confetti{
-position:fixed;
-width:8px;
-height:8px;
-top:-10px;
-animation:fall 3s linear forwards;
+.sparkle{
+position:absolute;
+font-size:25px;
+animation:sparkle 1.5s infinite;
 }
 
-@keyframes fall{
-to{transform:translateY(100vh);}
+@keyframes sparkle{
+0%{opacity:0;transform:scale(0.5)}
+50%{opacity:1;transform:scale(1.2)}
+100%{opacity:0;transform:scale(0.5)}
 }
 
 /* FIREWORK */
@@ -243,11 +233,11 @@ animation:explode 1.2s linear forwards;
 
 <h1>🎂 Happy 26th Birthday Darling 🎂</h1>
 
-<button id="surpriseBtn" onclick="confettiExplosion();openYears()">💌 Open Surprise</button>
+<button onclick="openYears()">💌 Open Surprise</button>
 
 <div class="mainGrid">
 
-<div class="memoryCard" onclick="openMemory('photo1.jpg','This is one of my favorite memories with you ❤️')">
+<div class="memoryCard" onclick="openMemory('photo1.jpg','This was one of the happiest memories we shared ❤️')">
 <img src="photo1.jpg">
 </div>
 
@@ -266,43 +256,21 @@ animation:explode 1.2s linear forwards;
 
 </div>
 
-<!-- YEAR POPUP -->
+<!-- YEAR GRID -->
 
 <div id="yearPopup" class="popup">
 
 <div class="year-grid">
 
-<div class="year-box" onclick="openYear('2001','photo4.jpg','The year a beautiful soul was born ❤️')">2001</div>
-<div class="year-box" onclick="openYear('2002','photo5.jpg','A little angel growing with love 👶')">2002</div>
-<div class="year-box" onclick="openYear('2003','photo6.jpg','Your smile started brightening lives 😊')">2003</div>
-<div class="year-box" onclick="openYear('2004','photo7.jpg','Every year you became more special 🌸')">2004</div>
-<div class="year-box" onclick="openYear('2005','photo8.jpg','A year full of innocence 🎈')">2005</div>
-<div class="year-box" onclick="openYear('2006','photo9.jpg','Your laughter became happiness 💖')">2006</div>
+<div class="year-box" onclick="openYear('2001','photo4.jpg','The year you were born ❤️','heart')">2001</div>
 
-<div class="year-box" onclick="openYear('2007','photo10.jpg','More memories started building ✨')">2007</div>
-<div class="year-box" onclick="openYear('2008','photo11.jpg','You kept shining brighter 🌟')">2008</div>
-<div class="year-box" onclick="openYear('2009','photo12.jpg','Kindness and love everywhere 🌼')">2009</div>
-<div class="year-box" onclick="openYear('2010','photo13.jpg','Another beautiful chapter 📖')">2010</div>
+<div class="year-box" onclick="openYear('2002','photo5.jpg','Your first smile brightened lives ✨','sparkle')">2002</div>
 
-<div class="year-box" onclick="openYear('2011','photo14.jpg','More dreams started growing 💫')">2011</div>
-<div class="year-box" onclick="openYear('2012','photo15.jpg','A year of sweet memories 🌷')">2012</div>
-<div class="year-box" onclick="openYear('2013','photo16.jpg','You grew stronger and brighter ✨')">2013</div>
-<div class="year-box" onclick="openYear('2014','photo17.jpg','Another amazing step in life 💕')">2014</div>
-<div class="year-box" onclick="openYear('2015','photo18.jpg','Your smile kept lighting our world 😊')">2015</div>
+<div class="year-box" onclick="openYear('2003','photo6.jpg','Growing with love 😊','heart')">2003</div>
 
-<div class="year-box" onclick="openYear('2016','photo19.jpg','Memories that stay forever 💖')">2016</div>
-<div class="year-box" onclick="openYear('2017','photo20.jpg','You became an inspiration 🌟')">2017</div>
-<div class="year-box" onclick="openYear('2018','photo21.jpg','Another step towards dreams ✨')">2018</div>
-<div class="year-box" onclick="openYear('2019','photo22.jpg','A year of wonderful stories 📖')">2019</div>
-<div class="year-box" onclick="openYear('2020','photo23.jpg','Even tough times couldn’t stop your shine 💪')">2020</div>
+<div class="year-box" onclick="openYear('2004','photo7.jpg','Every year more beautiful 🌸','sparkle')">2004</div>
 
-<div class="year-box" onclick="openYear('2021','photo25.jpg','You kept growing beautifully 🌸')">2021</div>
-<div class="year-box" onclick="openYear('2022','photo26.jpg','Life became even more colorful 🌈')">2022</div>
-<div class="year-box" onclick="openYear('2023','photo27.jpg','You spread happiness everywhere 💖')">2023</div>
-<div class="year-box" onclick="openYear('2024','photo28.jpg','Another unforgettable year ✨')">2024</div>
-<div class="year-box" onclick="openYear('2025','photo29.jpg','Preparing for another beautiful chapter 🌟')">2025</div>
-
-<div class="year-box" onclick="openYear('2026','photo30.jpg','Happy 26th Birthday 🎂❤️');fireworks()">2026</div>
+<div class="year-box" onclick="openYear('2026','photo30.jpg','Happy 26th Birthday 🎂','firework')">2026</div>
 
 </div>
 
@@ -310,7 +278,7 @@ animation:explode 1.2s linear forwards;
 
 </div>
 
-<!-- MODALS -->
+<!-- MEMORY MODAL -->
 
 <div id="memoryModal" class="modal">
 <div class="modal-content">
@@ -320,8 +288,10 @@ animation:explode 1.2s linear forwards;
 </div>
 </div>
 
+<!-- YEAR MODAL -->
+
 <div id="yearModal" class="modal">
-<div class="modal-content">
+<div class="modal-content" id="yearContent">
 <h2 id="yearTitle"></h2>
 <img id="yearPhoto">
 <p id="yearText"></p>
@@ -331,22 +301,123 @@ animation:explode 1.2s linear forwards;
 
 <script>
 
-/* BUTTON HIGHLIGHT */
+/* MEMORY */
 
-setTimeout(()=>{
-document.getElementById("surpriseBtn").classList.add("highlight");
-},10000);
+function openMemory(photo,text){
 
-/* FLOATING HEARTS */
+document.getElementById("memoryModal").style.display="flex";
+document.getElementById("memoryPhoto").src=photo;
+document.getElementById("memoryText").innerText=text;
 
-setInterval(()=>{
+}
+
+function closeMemory(){
+
+document.getElementById("memoryModal").style.display="none";
+
+}
+
+/* YEAR */
+
+function openYear(year,photo,text,effect){
+
+document.getElementById("yearModal").style.display="flex";
+
+document.getElementById("yearTitle").innerText=year;
+document.getElementById("yearPhoto").src=photo;
+document.getElementById("yearText").innerText=text;
+
+if(effect=="heart"){
+createHearts();
+}
+
+if(effect=="sparkle"){
+createSparkles();
+}
+
+if(effect=="firework"){
+fireworks();
+}
+
+}
+
+function closeYear(){
+
+document.getElementById("yearModal").style.display="none";
+
+}
+
+function openYears(){
+document.getElementById("yearPopup").style.display="block";
+}
+
+function closeYears(){
+document.getElementById("yearPopup").style.display="none";
+}
+
+/* HEART EFFECT */
+
+function createHearts(){
+
+for(let i=0;i<6;i++){
+
 let heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="💖";
-heart.style.left=Math.random()*100+"vw";
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),6000);
-},700);
+
+heart.className="blinkHeart";
+
+heart.innerHTML="❤️";
+
+heart.style.top=Math.random()*300+"px";
+heart.style.left=Math.random()*300+"px";
+
+document.getElementById("yearContent").appendChild(heart);
+
+}
+
+}
+
+/* SPARKLE */
+
+function createSparkles(){
+
+for(let i=0;i<6;i++){
+
+let star=document.createElement("div");
+
+star.className="sparkle";
+
+star.innerHTML="✨";
+
+star.style.top=Math.random()*300+"px";
+star.style.left=Math.random()*300+"px";
+
+document.getElementById("yearContent").appendChild(star);
+
+}
+
+}
+
+/* FIREWORK */
+
+function fireworks(){
+
+for(let i=0;i<60;i++){
+
+let f=document.createElement("div");
+
+f.className="firework";
+
+f.style.left=Math.random()*100+"vw";
+f.style.top=Math.random()*60+"vh";
+f.style.background="hsl("+Math.random()*360+",100%,60%)";
+
+document.body.appendChild(f);
+
+setTimeout(()=>f.remove(),1200);
+
+}
+
+}
 
 /* SLIDER */
 
@@ -360,84 +431,6 @@ index++;
 if(index>=images.length){index=0;}
 document.getElementById("slideImage").src=images[index];
 },3000);
-
-/* TYPEWRITER TEXT */
-
-function typeText(element,text){
-
-element.innerHTML="";
-let i=0;
-
-function typing(){
-if(i<text.length){
-element.innerHTML+=text.charAt(i);
-i++;
-setTimeout(typing,30);
-}
-}
-
-typing();
-}
-
-/* MEMORY */
-
-function openMemory(photo,text){
-document.getElementById("memoryModal").style.display="flex";
-document.getElementById("memoryPhoto").src=photo;
-typeText(document.getElementById("memoryText"),text);
-}
-
-function closeMemory(){
-document.getElementById("memoryModal").style.display="none";
-}
-
-/* YEAR */
-
-function openYear(year,photo,text){
-document.getElementById("yearModal").style.display="flex";
-document.getElementById("yearTitle").innerText=year;
-document.getElementById("yearPhoto").src=photo;
-typeText(document.getElementById("yearText"),text);
-}
-
-function closeYear(){
-document.getElementById("yearModal").style.display="none";
-}
-
-function openYears(){
-document.getElementById("yearPopup").style.display="block";
-}
-
-function closeYears(){
-document.getElementById("yearPopup").style.display="none";
-}
-
-/* CONFETTI */
-
-function confettiExplosion(){
-for(let i=0;i<120;i++){
-let c=document.createElement("div");
-c.className="confetti";
-c.style.left=Math.random()*100+"vw";
-c.style.background="hsl("+Math.random()*360+",100%,50%)";
-document.body.appendChild(c);
-setTimeout(()=>c.remove(),3000);
-}
-}
-
-/* FIREWORKS */
-
-function fireworks(){
-for(let i=0;i<60;i++){
-let f=document.createElement("div");
-f.className="firework";
-f.style.left=Math.random()*100+"vw";
-f.style.top=Math.random()*60+"vh";
-f.style.background="hsl("+Math.random()*360+",100%,60%)";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),1200);
-}
-}
 
 </script>
 
