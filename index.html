@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Happy Birthday Benita (Darling)</title>
+<title>Happy Birthday Benita ❤️</title>
 
 <style>
 
@@ -15,8 +15,10 @@ background-attachment:fixed;
 margin:0;
 padding:0;
 color:white;
-text-shadow:1px 1px 4px black;
+text-shadow:1px 1px 5px black;
 }
+
+/* MEMORY CARDS */
 
 .container{
 display:grid;
@@ -27,13 +29,10 @@ padding:20px;
 
 .card{
 background:rgba(255,255,255,0.9);
-padding:15px;
-border-radius:15px;
-box-shadow:0 5px 10px rgba(0,0,0,0.2);
-transition:transform 0.3s;
-overflow:hidden;
 color:black;
-text-shadow:none;
+border-radius:15px;
+padding:15px;
+transition:0.3s;
 }
 
 .card:hover{
@@ -45,40 +44,36 @@ width:100%;
 height:200px;
 object-fit:cover;
 border-radius:10px;
-transition:transform 0.4s;
 }
 
-.card:hover img{
-transform:scale(1.1);
-}
+/* BUTTON */
 
 button{
-padding:10px 20px;
+padding:12px 20px;
 font-size:16px;
-background:#ff69b4;
+background:#ff4fa0;
 border:none;
 color:white;
-border-radius:5px;
+border-radius:6px;
 cursor:pointer;
-margin-top:10px;
 }
 
-/* PHOTO SLIDER */
+/* SLIDER */
 
 .slider{
-width:350px;
+width:380px;
 margin:40px auto;
 }
 
 .slider img{
 width:100%;
-height:250px;
+height:260px;
 object-fit:cover;
 border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
+box-shadow:0 6px 15px rgba(0,0,0,0.4);
 }
 
-/* POPUP */
+/* FULL SCREEN YEAR GRID */
 
 .popup{
 display:none;
@@ -87,51 +82,63 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.7);
-justify-content:center;
-align-items:center;
+background:rgba(0,0,0,0.9);
+overflow:auto;
 z-index:999;
 }
 
-.popup-content{
-background:white;
-padding:20px;
-border-radius:15px;
-max-width:600px;
-max-height:80vh;
-overflow-y:auto;
-color:black;
-}
-
-/* MEMORY GRID */
-
-.memory-grid{
+.year-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-gap:12px;
-margin-top:20px;
+gap:20px;
+padding:40px;
 }
 
-.memory-box{
+.year-box{
 background:white;
-padding:8px;
+color:black;
+padding:20px;
 border-radius:10px;
-box-shadow:0 3px 8px rgba(0,0,0,0.1);
-opacity:0;
-transform:translateY(40px);
-transition:all 0.8s ease;
+cursor:pointer;
+transition:0.3s;
+font-weight:bold;
 }
 
-.memory-box.show{
-opacity:1;
-transform:translateY(0);
+.year-box:hover{
+transform:scale(1.1);
+background:#ff69b4;
+color:white;
 }
 
-.memory-box img{
+/* YEAR MODAL */
+
+.yearModal{
+display:none;
+position:fixed;
+top:0;
+left:0;
 width:100%;
-height:100px;
-object-fit:cover;
-border-radius:6px;
+height:100%;
+background:rgba(0,0,0,0.9);
+justify-content:center;
+align-items:center;
+z-index:1000;
+}
+
+.modal-content{
+background:white;
+color:black;
+padding:25px;
+border-radius:15px;
+max-width:450px;
+text-align:center;
+}
+
+.modal-content img{
+width:100%;
+max-height:350px;
+object-fit:contain;
+border-radius:10px;
 }
 
 /* BALLOONS */
@@ -144,7 +151,7 @@ border-radius:50%;
 position:fixed;
 bottom:-100px;
 animation:floatBalloon 10s infinite;
-opacity:0.6;
+opacity:0.7;
 }
 
 .balloon:nth-child(1){left:10%;}
@@ -165,26 +172,28 @@ opacity:0.6;
 <h1>🎂 Happy 26th Birthday Darling 🎂</h1>
 <p>Dear Akkuuuuuuuu, thank you for always being part of my life 💖</p>
 
-<button onclick="birthdaySurprise()">Click for Surprise 💌</button>
+<button onclick="openYears()">Click for Surprise 💌</button>
+
+<!-- MEMORY CARDS -->
 
 <div class="container">
 
 <div class="card">
 <h3>Memory</h3>
-<img src="photo4.jpg">
-<p>One of my favorite memories with you.</p>
+<img src="photo1.jpg">
+<p>One of my favorite memories.</p>
 </div>
 
 <div class="card">
 <h3>Memory</h3>
-<img src="photo6.jpg">
-<p>Every moment with you is special.</p>
+<img src="photo2.jpg">
+<p>Moments that make life beautiful.</p>
 </div>
 
 <div class="card">
 <h3>Memory</h3>
-<img src="photo7.jpg">
-<p>Life feels brighter when you are around.</p>
+<img src="photo3.jpg">
+<p>You always make everything brighter.</p>
 </div>
 
 </div>
@@ -195,54 +204,70 @@ opacity:0.6;
 <img id="slideImage" src="photo4.jpg">
 </div>
 
-<div id="popup" class="popup">
+<!-- YEAR GRID -->
 
-<div class="popup-content">
+<div id="yearPopup" class="popup">
 
-<h2>💖 26 Beautiful Years 💖</h2>
+<div class="year-grid">
 
-<div class="memory-grid">
+<div class="year-box" onclick="openYear('2001','photo4.jpg','The year your journey began.')">2001</div>
+<div class="year-box" onclick="openYear('2002','photo6.jpg','A beautiful year of life.')">2002</div>
+<div class="year-box" onclick="openYear('2003','photo7.jpg','Growing with happiness.')">2003</div>
+<div class="year-box" onclick="openYear('2004','photo8.jpg','More smiles and joy.')">2004</div>
+<div class="year-box" onclick="openYear('2005','photo9.jpg','Life becoming brighter.')">2005</div>
+<div class="year-box" onclick="openYear('2006','photo10.jpg','Another beautiful year.')">2006</div>
 
-<!-- 26 MEMORY BLOCKS -->
+<div class="year-box" onclick="openYear('2007','photo4.jpg','Memories keep growing.')">2007</div>
+<div class="year-box" onclick="openYear('2008','photo6.jpg','Your kindness shines.')">2008</div>
+<div class="year-box" onclick="openYear('2009','photo7.jpg','Life full of moments.')">2009</div>
+<div class="year-box" onclick="openYear('2010','photo8.jpg','Smiles everywhere.')">2010</div>
 
-<div class="memory-box"><h4>Year 1</h4><img src="photo4.jpg"><p>Your journey began.</p></div>
-<div class="memory-box"><h4>Year 2</h4><img src="photo5.jpg"><p>A beautiful life story starts.</p></div>
-<div class="memory-box"><h4>Year 3</h4><img src="photo6.jpg"><p>Always bringing joy.</p></div>
-<div class="memory-box"><h4>Year 4</h4><img src="photo7.jpg"><p>Your smile lights up everything.</p></div>
-<div class="memory-box"><h4>Year 5</h4><img src="photo8.jpg"><p>More happiness every year.</p></div>
-<div class="memory-box"><h4>Year 6</h4><img src="photo9.jpg"><p>Your kindness is special.</p></div>
-<div class="memory-box"><h4>Year 7</h4><img src="photo10.jpg"><p>Life is better with you.</p></div>
+<div class="year-box" onclick="openYear('2011','photo9.jpg','A wonderful journey.')">2011</div>
+<div class="year-box" onclick="openYear('2012','photo10.jpg','More dreams begin.')">2012</div>
 
-<div class="memory-box"><h4>Year 8</h4><img src="photo4.jpg"><p>Memories growing together.</p></div>
-<div class="memory-box"><h4>Year 9</h4><img src="photo5.jpg"><p>Your laughter is precious.</p></div>
-<div class="memory-box"><h4>Year 10</h4><img src="photo6.jpg"><p>Always inspiring everyone.</p></div>
+<div class="year-box" onclick="openYear('2013','photo4.jpg','Life keeps getting better.')">2013</div>
+<div class="year-box" onclick="openYear('2014','photo6.jpg','More laughter.')">2014</div>
+<div class="year-box" onclick="openYear('2015','photo7.jpg','Memories together.')">2015</div>
 
-<div class="memory-box"><h4>Year 11</h4><img src="photo7.jpg"><p>Beautiful memories.</p></div>
-<div class="memory-box"><h4>Year 12</h4><img src="photo8.jpg"><p>Your kindness shines.</p></div>
-<div class="memory-box"><h4>Year 13</h4><img src="photo9.jpg"><p>Life becomes brighter.</p></div>
+<div class="year-box" onclick="openYear('2016','photo8.jpg','Bright moments.')">2016</div>
+<div class="year-box" onclick="openYear('2017','photo9.jpg','Joyful year.')">2017</div>
 
-<div class="memory-box"><h4>Year 14</h4><img src="photo10.jpg"><p>Your smile is magical.</p></div>
-<div class="memory-box"><h4>Year 15</h4><img src="photo4.jpg"><p>Growing stronger each year.</p></div>
-<div class="memory-box"><h4>Year 16</h4><img src="photo5.jpg"><p>More memories together.</p></div>
+<div class="year-box" onclick="openYear('2018','photo10.jpg','New chapter begins.')">2018</div>
+<div class="year-box" onclick="openYear('2019','photo4.jpg','Dreams growing.')">2019</div>
 
-<div class="memory-box"><h4>Year 17</h4><img src="photo6.jpg"><p>You inspire everyone.</p></div>
-<div class="memory-box"><h4>Year 18</h4><img src="photo7.jpg"><p>New dreams begin.</p></div>
-<div class="memory-box"><h4>Year 19</h4><img src="photo8.jpg"><p>Your journey continues.</p></div>
+<div class="year-box" onclick="openYear('2020','photo6.jpg','Life keeps shining.')">2020</div>
+<div class="year-box" onclick="openYear('2021','photo7.jpg','More memories.')">2021</div>
 
-<div class="memory-box"><h4>Year 20</h4><img src="photo9.jpg"><p>More joy and laughter.</p></div>
-<div class="memory-box"><h4>Year 21</h4><img src="photo10.jpg"><p>Life becomes exciting.</p></div>
-<div class="memory-box"><h4>Year 22</h4><img src="photo4.jpg"><p>Your kindness grows.</p></div>
+<div class="year-box" onclick="openYear('2022','photo8.jpg','Beautiful moments.')">2022</div>
+<div class="year-box" onclick="openYear('2023','photo9.jpg','Your smile brightens everything.')">2023</div>
 
-<div class="memory-box"><h4>Year 23</h4><img src="photo5.jpg"><p>Memories everywhere.</p></div>
-<div class="memory-box"><h4>Year 24</h4><img src="photo6.jpg"><p>Life is beautiful.</p></div>
-<div class="memory-box"><h4>Year 25</h4><img src="photo7.jpg"><p>Another wonderful year.</p></div>
-<div class="memory-box"><h4>Year 26</h4><img src="photo8.jpg"><p>Happy 26th Birthday ❤️</p></div>
+<div class="year-box" onclick="openYear('2024','photo10.jpg','Life keeps getting better.')">2024</div>
+<div class="year-box" onclick="openYear('2025','photo4.jpg','Another wonderful year.')">2025</div>
+
+<div class="year-box" onclick="openYear('2026','photo6.jpg','Happy 26th Birthday ❤️')">2026</div>
+
+</div>
+
+<button onclick="closeYears()">Close</button>
 
 </div>
 
-<button onclick="closePopup()">Close</button>
+<!-- YEAR MODAL -->
+
+<div id="yearModal" class="yearModal">
+
+<div class="modal-content">
+
+<h2 id="yearTitle"></h2>
+
+<img id="yearPhoto">
+
+<p id="yearText"></p>
+
+<button onclick="closeYear()">Close</button>
 
 </div>
+
 </div>
 
 <div class="balloon"></div>
@@ -252,80 +277,43 @@ opacity:0.6;
 
 <script>
 
-let images = ["photo4.jpg","photo5.jpg","photo6.jpg","photo7.jpg","photo8.jpg","photo9.jpg","photo10.jpg"];
-let index = 0;
+/* SLIDER */
 
-setInterval(function(){
+let images=["photo4.jpg","photo6.jpg","photo7.jpg","photo8.jpg","photo9.jpg","photo10.jpg"];
+let index=0;
+
+setInterval(()=>{
 index++;
-if(index >= images.length){index=0;}
-document.getElementById("slideImage").src = images[index];
+if(index>=images.length){index=0;}
+document.getElementById("slideImage").src=images[index];
 },3000);
 
-function birthdaySurprise(){
+/* YEAR POPUP */
 
-document.getElementById("popup").style.display="flex";
+function openYears(){
+document.getElementById("yearPopup").style.display="block";
+}
 
-/* CONFETTI */
+function closeYears(){
+document.getElementById("yearPopup").style.display="none";
+}
 
-for(let i=0;i<80;i++){
+/* YEAR MODAL */
 
-let confetti=document.createElement("div");
+function openYear(year,photo,text){
 
-confetti.style.position="fixed";
-confetti.style.width="10px";
-confetti.style.height="10px";
-confetti.style.background="hsl(" + Math.random()*360 + ",100%,50%)";
-confetti.style.top="-10px";
-confetti.style.left=Math.random()*window.innerWidth+"px";
-confetti.style.transition="top 3s linear";
+document.getElementById("yearModal").style.display="flex";
 
-document.body.appendChild(confetti);
+document.getElementById("yearTitle").innerText=year;
 
-setTimeout(()=>{confetti.style.top="100vh";},10);
-setTimeout(()=>{confetti.remove();},3000);
+document.getElementById("yearPhoto").src=photo;
+
+document.getElementById("yearText").innerText=text;
 
 }
 
-/* HEARTS */
-
-for(let i=0;i<20;i++){
-let heart=document.createElement("div");
-heart.innerHTML="💖";
-heart.style.position="fixed";
-heart.style.left=Math.random()*100+"vw";
-heart.style.top="100vh";
-heart.style.fontSize="20px";
-heart.style.transition="transform 4s linear";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-heart.style.transform="translateY(-100vh)";
-},10);
-
-setTimeout(()=>{
-heart.remove();
-},4000);
-}
-
-}
-
-/* SCROLL ANIMATION */
-
-const observer = new IntersectionObserver((entries)=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("show");
-}
-});
-});
-
-document.querySelectorAll(".memory-box").forEach(el=>{
-observer.observe(el);
-});
-
-function closePopup(){
-document.getElementById("popup").style.display="none";
+function closeYear(){
+document.getElementById("yearModal").style.display="none";
 }
 
 </script>
