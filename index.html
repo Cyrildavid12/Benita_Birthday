@@ -8,7 +8,7 @@
 body{
 font-family:Arial;
 text-align:center;
-background-image:url("photo5.jpg");
+background-image:url("photo4.jpg");
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
@@ -16,6 +16,33 @@ margin:0;
 padding:0;
 color:white;
 text-shadow:1px 1px 5px black;
+}
+
+/* GIFT INTRO */
+
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:#111;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:2000;
+}
+
+.gift{
+font-size:80px;
+cursor:pointer;
+transition:0.5s;
+}
+
+.gift:hover{
+transform:scale(1.2);
+}
+
+.hidden{
+display:none;
 }
 
 /* MEMORY CARDS */
@@ -68,12 +95,13 @@ margin:40px auto;
 .slider img{
 width:100%;
 height:260px;
-object-fit:cover;
+object-fit:contain;
 border-radius:15px;
 box-shadow:0 6px 15px rgba(0,0,0,0.4);
+background:black;
 }
 
-/* FULL SCREEN YEAR GRID */
+/* YEAR GRID */
 
 .popup{
 display:none;
@@ -82,7 +110,7 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.9);
+background:rgba(0,0,0,0.95);
 overflow:auto;
 z-index:999;
 }
@@ -110,7 +138,7 @@ background:#ff69b4;
 color:white;
 }
 
-/* YEAR MODAL */
+/* MODAL */
 
 .yearModal{
 display:none;
@@ -130,13 +158,13 @@ background:white;
 color:black;
 padding:25px;
 border-radius:15px;
-max-width:450px;
+max-width:500px;
 text-align:center;
 }
 
 .modal-content img{
 width:100%;
-max-height:350px;
+max-height:400px;
 object-fit:contain;
 border-radius:10px;
 }
@@ -169,12 +197,18 @@ opacity:0.7;
 
 <body>
 
+<!-- GIFT BOX -->
+
+<div id="intro">
+<div class="gift" onclick="openGift()">🎁</div>
+</div>
+
+<div id="mainContent" class="hidden">
+
 <h1>🎂 Happy 26th Birthday Darling 🎂</h1>
 <p>Dear Akkuuuuuuuu, thank you for always being part of my life 💖</p>
 
 <button onclick="openYears()">Click for Surprise 💌</button>
-
-<!-- MEMORY CARDS -->
 
 <div class="container">
 
@@ -204,47 +238,40 @@ opacity:0.7;
 <img id="slideImage" src="photo4.jpg">
 </div>
 
+</div>
+
 <!-- YEAR GRID -->
 
 <div id="yearPopup" class="popup">
 
 <div class="year-grid">
 
-<div class="year-box" onclick="openYear('2001','photo4.jpg','The year your journey began.')">2001</div>
-<div class="year-box" onclick="openYear('2002','photo6.jpg','A beautiful year of life.')">2002</div>
-<div class="year-box" onclick="openYear('2003','photo7.jpg','Growing with happiness.')">2003</div>
-<div class="year-box" onclick="openYear('2004','photo8.jpg','More smiles and joy.')">2004</div>
-<div class="year-box" onclick="openYear('2005','photo9.jpg','Life becoming brighter.')">2005</div>
-<div class="year-box" onclick="openYear('2006','photo10.jpg','Another beautiful year.')">2006</div>
-
-<div class="year-box" onclick="openYear('2007','photo4.jpg','Memories keep growing.')">2007</div>
-<div class="year-box" onclick="openYear('2008','photo6.jpg','Your kindness shines.')">2008</div>
-<div class="year-box" onclick="openYear('2009','photo7.jpg','Life full of moments.')">2009</div>
-<div class="year-box" onclick="openYear('2010','photo8.jpg','Smiles everywhere.')">2010</div>
-
-<div class="year-box" onclick="openYear('2011','photo9.jpg','A wonderful journey.')">2011</div>
-<div class="year-box" onclick="openYear('2012','photo10.jpg','More dreams begin.')">2012</div>
-
-<div class="year-box" onclick="openYear('2013','photo4.jpg','Life keeps getting better.')">2013</div>
-<div class="year-box" onclick="openYear('2014','photo6.jpg','More laughter.')">2014</div>
-<div class="year-box" onclick="openYear('2015','photo7.jpg','Memories together.')">2015</div>
-
-<div class="year-box" onclick="openYear('2016','photo8.jpg','Bright moments.')">2016</div>
-<div class="year-box" onclick="openYear('2017','photo9.jpg','Joyful year.')">2017</div>
-
-<div class="year-box" onclick="openYear('2018','photo10.jpg','New chapter begins.')">2018</div>
-<div class="year-box" onclick="openYear('2019','photo4.jpg','Dreams growing.')">2019</div>
-
-<div class="year-box" onclick="openYear('2020','photo6.jpg','Life keeps shining.')">2020</div>
-<div class="year-box" onclick="openYear('2021','photo7.jpg','More memories.')">2021</div>
-
-<div class="year-box" onclick="openYear('2022','photo8.jpg','Beautiful moments.')">2022</div>
-<div class="year-box" onclick="openYear('2023','photo9.jpg','Your smile brightens everything.')">2023</div>
-
-<div class="year-box" onclick="openYear('2024','photo10.jpg','Life keeps getting better.')">2024</div>
-<div class="year-box" onclick="openYear('2025','photo4.jpg','Another wonderful year.')">2025</div>
-
-<div class="year-box" onclick="openYear('2026','photo6.jpg','Happy 26th Birthday ❤️')">2026</div>
+<div class="year-box" onclick="openYear('2001','photo4.jpg')">2001</div>
+<div class="year-box" onclick="openYear('2002','photo5.jpg')">2002</div>
+<div class="year-box" onclick="openYear('2003','photo6.jpg')">2003</div>
+<div class="year-box" onclick="openYear('2004','photo7.jpg')">2004</div>
+<div class="year-box" onclick="openYear('2005','photo8.jpg')">2005</div>
+<div class="year-box" onclick="openYear('2006','photo9.jpg')">2006</div>
+<div class="year-box" onclick="openYear('2007','photo10.jpg')">2007</div>
+<div class="year-box" onclick="openYear('2008','photo11.jpg')">2008</div>
+<div class="year-box" onclick="openYear('2009','photo12.jpg')">2009</div>
+<div class="year-box" onclick="openYear('2010','photo13.jpg')">2010</div>
+<div class="year-box" onclick="openYear('2011','photo14.jpg')">2011</div>
+<div class="year-box" onclick="openYear('2012','photo15.jpg')">2012</div>
+<div class="year-box" onclick="openYear('2013','photo16.jpg')">2013</div>
+<div class="year-box" onclick="openYear('2014','photo17.jpg')">2014</div>
+<div class="year-box" onclick="openYear('2015','photo18.jpg')">2015</div>
+<div class="year-box" onclick="openYear('2016','photo19.jpg')">2016</div>
+<div class="year-box" onclick="openYear('2017','photo20.jpg')">2017</div>
+<div class="year-box" onclick="openYear('2018','photo21.jpg')">2018</div>
+<div class="year-box" onclick="openYear('2019','photo22.jpg')">2019</div>
+<div class="year-box" onclick="openYear('2020','photo23.jpg')">2020</div>
+<div class="year-box" onclick="openYear('2021','photo24.jpg')">2021</div>
+<div class="year-box" onclick="openYear('2022','photo4.jpg')">2022</div>
+<div class="year-box" onclick="openYear('2023','photo5.jpg')">2023</div>
+<div class="year-box" onclick="openYear('2024','photo6.jpg')">2024</div>
+<div class="year-box" onclick="openYear('2025','photo7.jpg')">2025</div>
+<div class="year-box" onclick="openYear('2026','photo8.jpg')">2026</div>
 
 </div>
 
@@ -252,7 +279,7 @@ opacity:0.7;
 
 </div>
 
-<!-- YEAR MODAL -->
+<!-- MODAL -->
 
 <div id="yearModal" class="yearModal">
 
@@ -262,7 +289,7 @@ opacity:0.7;
 
 <img id="yearPhoto">
 
-<p id="yearText"></p>
+<p>Beautiful memory from this year ❤️</p>
 
 <button onclick="closeYear()">Close</button>
 
@@ -277,9 +304,24 @@ opacity:0.7;
 
 <script>
 
+/* GIFT OPEN */
+
+function openGift(){
+document.getElementById("intro").style.display="none";
+document.getElementById("mainContent").classList.remove("hidden");
+}
+
 /* SLIDER */
 
-let images=["photo4.jpg","photo6.jpg","photo7.jpg","photo8.jpg","photo9.jpg","photo10.jpg"];
+let images=[
+"photo4.jpg","photo5.jpg","photo6.jpg","photo7.jpg",
+"photo8.jpg","photo9.jpg","photo10.jpg","photo11.jpg",
+"photo12.jpg","photo13.jpg","photo14.jpg","photo15.jpg",
+"photo16.jpg","photo17.jpg","photo18.jpg","photo19.jpg",
+"photo20.jpg","photo21.jpg","photo22.jpg","photo23.jpg",
+"photo24.jpg"
+];
+
 let index=0;
 
 setInterval(()=>{
@@ -300,15 +342,11 @@ document.getElementById("yearPopup").style.display="none";
 
 /* YEAR MODAL */
 
-function openYear(year,photo,text){
+function openYear(year,photo){
 
 document.getElementById("yearModal").style.display="flex";
-
 document.getElementById("yearTitle").innerText=year;
-
 document.getElementById("yearPhoto").src=photo;
-
-document.getElementById("yearText").innerText=text;
 
 }
 
