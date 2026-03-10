@@ -2,7 +2,7 @@
 
 <html>
 <head>
-<title>Happy Birthday Benita ❤️</title>
+<title>Happy Birthday Benita(Aunty) ❤️</title>
 
 <style>
 
@@ -59,24 +59,6 @@ animation:titleFade 3s forwards 2.5s;
 100%{opacity:0;visibility:hidden;}
 }
 
-/* GIFT */
-
-#intro{
-position:fixed;
-width:100%;
-height:100%;
-background:#111;
-display:none;
-justify-content:center;
-align-items:center;
-z-index:2000;
-}
-
-.gift{
-font-size:90px;
-cursor:pointer;
-}
-
 /* BUTTON */
 
 button{
@@ -115,6 +97,7 @@ backdrop-filter:blur(10px);
 border-radius:15px;
 padding:10px;
 transition:0.4s;
+cursor:pointer;
 }
 
 .card:hover{
@@ -180,9 +163,9 @@ transform:scale(1.2);
 box-shadow:0 0 25px pink;
 }
 
-/* MODAL */
+/* MODALS */
 
-.yearModal{
+.modal{
 display:none;
 position:fixed;
 top:0;
@@ -231,7 +214,6 @@ animation:floatHeart 6s linear infinite;
 position:fixed;
 width:8px;
 height:8px;
-background:red;
 top:-10px;
 animation:fall 3s linear forwards;
 }
@@ -270,20 +252,26 @@ animation:explode 1.2s linear forwards;
 <h2 class="introSub">From Your Thambi (THE KING)</h2>
 </div>
 
-<div id="intro">
-<div class="gift" onclick="openGift()">🎁</div>
-</div>
-
-<div id="mainContent" style="display:none;">
+<div id="mainContent">
 
 <h1>🎂 Happy 26th Birthday Darling 🎂</h1>
 
 <button id="surpriseBtn" onclick="confettiExplosion();openYears()">💌 Open Surprise</button>
 
 <div class="container">
-<div class="card"><img src="photo1.jpg"></div>
-<div class="card"><img src="photo2.jpg"></div>
-<div class="card"><img src="photo3.jpg"></div>
+
+<div class="card" onclick="openMemory('photo1.jpg','This is one of my favorite memories with you. I will never forget this moment ❤️')">
+<img src="photo1.jpg">
+</div>
+
+<div class="card" onclick="openMemory('photo2.jpg','Life feels brighter because you are my sister ✨')">
+<img src="photo2.jpg">
+</div>
+
+<div class="card" onclick="openMemory('photo3.jpg','Every moment with you becomes a beautiful memory 💖')">
+<img src="photo3.jpg">
+</div>
+
 </div>
 
 <h2>Beautiful Memories Together 💖</h2>
@@ -334,44 +322,33 @@ animation:explode 1.2s linear forwards;
 
 </div>
 
-<div id="yearModal" class="yearModal">
-
+<div id="memoryModal" class="modal">
 <div class="modal-content">
-
-<h2 id="yearTitle"></h2>
-
-<img id="yearPhoto">
-
-<p id="yearText"></p>
-
-<button onclick="closeYear()">Close</button>
-
+<img id="memoryPhoto">
+<p id="memoryText"></p>
+<button onclick="closeMemory()">Close</button>
+</div>
 </div>
 
+<div id="yearModal" class="modal">
+<div class="modal-content">
+<h2 id="yearTitle"></h2>
+<img id="yearPhoto">
+<p id="yearText"></p>
+<button onclick="closeYear()">Close</button>
+</div>
 </div>
 
 <script>
 
-/* SHOW GIFT */
-
-setTimeout(()=>{
-document.getElementById("intro").style.display="flex";
-},6000);
-
 /* MUSIC */
 
-function openGift(){
-
-document.getElementById("intro").style.display="none";
-
-document.getElementById("mainContent").style.display="block";
-
+window.onload=function(){
 document.getElementById("music").play();
 
 setTimeout(()=>{
 document.getElementById("surpriseBtn").classList.add("highlight");
 },10000);
-
 }
 
 /* CONFETTI */
@@ -459,6 +436,24 @@ if(index>=images.length){index=0;}
 document.getElementById("slideImage").src=images[index];
 
 },3000);
+
+/* MEMORY MODAL */
+
+function openMemory(photo,text){
+
+document.getElementById("memoryModal").style.display="flex";
+
+document.getElementById("memoryPhoto").src=photo;
+
+document.getElementById("memoryText").innerText=text;
+
+}
+
+function closeMemory(){
+
+document.getElementById("memoryModal").style.display="none";
+
+}
 
 /* YEAR MODAL */
 
